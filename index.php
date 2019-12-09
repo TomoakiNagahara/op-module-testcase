@@ -1,6 +1,4 @@
 <?php
-use OP\UNIT\NEWWORLD\Template;
-
 /**
  * unit-test:/index.php
  *
@@ -11,10 +9,21 @@ use OP\UNIT\NEWWORLD\Template;
  * @copyright Tomoaki Nagahara All right reserved.
  */
 //	...
-include('common.php');
+if(!Env::isAdmin() ){
+	return;
+}
+
+//	Include local functions.
+include('index.inc.php');
+include('Nav.class.php');
+
+//	Set "testcase" meta URL.
+RootPath('testcase', ConvertPath('app:/_testcase'));
 
 //	...
-include('menu.phtml');
+App::WebPack('testcase:/index.css');
+App::WebPack('testcase:/nav-right.css');
+App::WebPack('testcase:/breadcrumb.css');
 
 //	...
 $args = App::Args();
@@ -25,8 +34,19 @@ if( file_exists( $file = join('/', $args).'.php') ){
 }else if( file_exists( $file = join('/', $args).'/action.php' ) ){
 	//	...
 }else{
-	$file = 'index.phtml';
+	//	...
+	array_pop($args);
+
+	//	...
+	if( file_exists( $file = join('/', $args).'/action.php' ) ){
+		//	...
+	}else{
+		$file = null;
+	}
 }
 
 //	...
-App::Template($file);
+App::Title('TEST CASE | '.join(' - ', $args));
+
+//	...
+App::Template('index.phtml',['file'=>$file]);

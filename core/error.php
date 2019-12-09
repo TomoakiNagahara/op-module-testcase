@@ -9,4 +9,12 @@
  * @copyright Tomoaki Nagahara All right reserved.
  */
 //	...
+if( false ){
+	$hoge = $foo = null;
+};
+
+//	...
 echo $hoge;
+
+//	...
+$foo->bar();

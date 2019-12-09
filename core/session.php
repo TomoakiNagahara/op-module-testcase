@@ -9,17 +9,36 @@
  * @copyright Tomoaki Nagahara All right reserved.
  */
 //	...
-if( $_GET['notice'] ?? false ){
-	Notice::Set("TEST");
+App::Template('session.phtml');
+
+//	...
+switch( $action = $_GET['action'] ?? null ){
+	case 'notice':
+		Notice::Set(__FILE__);
+		break;
+
+	case 'app':
+		break;
+
+	case 'whole':
+		$_SESSION = [];
+		break;
+
+	default:
+		Notice::Set("This action has not been set. ($action)");
 }
 
 //	...
-if( $_GET['clear'] ?? false ){
-	$_SESSION = [];
+if( empty($_SESSION['count']) ){
+	$_SESSION['count'] = 0;
 }
 
 //	...
-printf('<a href="?clear=1">Clear session</a>');
+$count = App::Session('count');
+App::Session('count', $count +1);
 
 //	...
 D($_SESSION);
+
+//	...
+$_SESSION['count']++;

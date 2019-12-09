@@ -1,0 +1,29 @@
+<?php
+/**
+ * unit-test:/unit/shadow-dom/chat/index.html
+ *
+ * @creation  2018-10-16
+ * @version   1.0
+ * @package   unit-test
+ * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @copyright Tomoaki Nagahara All right reserved.
+ */
+?>
+<p>This is chat system</p>
+<div sdom-name="chat" idnt-name="main"><p>in preparation...</p></div>
+<?php
+include('chat.html');
+?>
+<script>
+<?php
+include('sdom-core.js');
+include('sdom-public.js');
+include('sdom-private.js');
+include('chat.js');
+?>
+</script>
+<style>
+sdom {
+	display: none;
+}
+</style>

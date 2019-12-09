@@ -1,0 +1,48 @@
+<?php
+/**
+ * unit-test:/unit/database/orm/form.phtml
+ *
+ * @creation  2018-06-20
+ * @version   1.0
+ * @package   unit-test
+ * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @copyright Tomoaki Nagahara All right reserved.
+ */
+//	...
+if( false ){
+	$record = null;
+};
+
+//	...
+$form = $record->Form();
+?>
+<?php $form->Start() ?>
+<table>
+	<?php foreach( $record->Column() as $name => $column ): ?>
+	<tr>
+		<th><?php $form->Label($name) ?></th>
+		<td><?php $form->Input($name) ?></td>
+		<td><?php $form->Error($name) ?></td>
+	</tr>
+	<?php endforeach; ?>
+	<tr>
+		<td></td>
+		<td>
+			<?php if( ($_SERVER['REQUEST_METHOD'] === 'POST') and empty($valid) ): ?>
+			<p class="i0 error">
+				<?= $form->Token() ? 'Validate has failure.':'Token is not been sent.' ?>
+			</p>
+			<?php endif; ?>
+			<?php if( isset($saved) ): ?>
+			<p class="i0 <?= $saved ? 'success':'error' ?>">
+				<?= $saved ? 'Save record was successful.':'There are no changes to save.' ?>
+			</p>
+			<?php endif; ?>
+			<button>
+				<?= $record->isFound() ? 'Update':'Create' ?>
+			</button>
+		</td>
+		<td></td>
+	</tr>
+</table>
+<?php $form->Finish() ?>

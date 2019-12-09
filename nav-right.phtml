@@ -1,0 +1,77 @@
+<?php
+/**
+ * unit-test:/menu.phtml
+ *
+ * @creation  2018-04-17
+ * @version   1.0
+ * @package   unit-test
+ * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @copyright Tomoaki Nagahara All right reserved.
+ */
+
+//	...
+if(!ifset($_GET['menu'], 1) ){
+	echo '<!-- menu is hidden -->'.PHP_EOL;
+	return;
+}
+
+//	...
+$list = App::Session('testcase-menu') ?? $list = ['core'=>[],'unit'=>[],'app'=>[]];
+
+//	Search directory recursively.
+$args = App::Args();
+
+//	...
+$target = &$list;
+
+//	...
+$join = [];
+
+//	...
+while( $arg = array_shift($args) ){
+	//	Build recursively.
+	$target = &$target[$arg];
+	$join[] = $arg;
+	$path = join('/',$join);
+
+	//	Search files in the directory.
+	if( is_dir($path) and $handle = opendir($path) ){
+		while( false !== ($file = readdir($handle)) ){
+			if( $file === '.' or $file === '..' or $file === 'action.php' ){
+				continue;
+			}
+
+			//	...
+			$temp = explode('.', $file);
+			$file = $temp[0];
+
+			//	...
+			if( isset($temp[1]) and $temp[1] !== 'php' ){
+				continue;
+			}
+
+			//	...
+			$target[$file] = is_dir("$arg/$file") ? []: null;
+		}
+		closedir($handle);
+	}
+}
+
+//	...
+function _list($list, $dir){
+	echo '<ul>';
+	foreach( $list as $key => $var ){
+		printf('<li><a href="%s">%s</a></li>', $dir.$key.'/', $key);
+		if( $var and is_array($var) ){
+			_list($var, $dir.$key.'/');
+		}
+	}
+	echo '</ul>';
+}
+?>
+<nav id="testcase-nav-right" class="background">
+	<ul>
+		<li><a href="<?= $root = ConvertURL('testcase:/') ?>">testcase</a></li>
+		<?php _list($list, $root); ?>
+	</ul>
+</nav>

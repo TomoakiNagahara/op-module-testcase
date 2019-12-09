@@ -8,11 +8,33 @@
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
+//	...
+$file = \OP\UNIT\NEWWORLD\Template::Args('file');
 ?>
-<h1>This is test case library.</h1>
-<h2>How to use</h2>
-<code>
-cd asset<br/>
-ln -s ./test ../_testcase
-</code>
-<hr/>
+<section id="testcase">
+	<h1>TEST CASE</h1>
+	<?php
+	//	...
+	App::Template('nav-right.phtml');
+
+	//	...
+	App::Template('breadcrumb.phtml');
+
+	//	...
+	if( $file ){
+		App::Template($file);
+	}else{
+		//	...
+		D( 'PHP version is ' . PHP_VERSION );
+
+		//	...
+		Html( ConvertPath('testcase:/') );
+		Html( ConvertURL('testcase:/')  );
+	}
+
+	//	...
+	if( $_GET['phpinfo'] ?? null ){
+		phpinfo();
+	};
+	?>
+</section>
