@@ -1,22 +1,20 @@
 <?php
 /**
- * unit-test:/unit/google/oauth.php
+ * module-testcase:/unit/google/oauth.php
  *
- * @creation  2018-07-02
+ * @creation  2019-04-06
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-/* @var $google \OP\UNIT\Google */
-if(!$google = Unit::Instance('Google') ){
-	return;
-}
 
-//	...
-$url = 'http://localhost/op/7/app-skeleton-2018-nep/_testcase/unit/google/oauth';
+/** namespace
+ *
+ * @creation  2019-04-06
+ */
+namespace OP;
 
-//	...
-$json = $google->OAuth($url);
+/* @var $app  UNIT\App  */
 
-D($json);
+D();

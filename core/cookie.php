@@ -1,27 +1,34 @@
 <?php
 /**
- * unit-test:/core/cookie.php
+ * module-testcase:/core/cookie.php
  *
- * @creation  2018-05-15
+ * @creation  2019-03-16
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-$keyname = 'testcase';
+
+/** namespace
+ *
+ * @creation  2019-02-20
+ */
+namespace OP;
 
 //	...
-$testcase = Cookie::Get($keyname, ['datetime'=>null, 'count'=>0]);
+$count = Cookie::Get('count', 0);
 
 //	...
-D($testcase);
-
-//	...
-$testcase['datetime'] = Time::Datetime();
-
-//	...
-$testcase['count'] = ifset($testcase['count'], 0) +1;
-
-//	...
-Cookie::Set($keyname, $testcase);
+$expire = $_GET['expire'] ?? 10;
+$result = Cookie::Set('count', $count+1, $expire);
+?>
+<section>
+[
+  <a href="?expire=10"> Expire after 10 sec</a> |
+  <a href="?expire=2020-01-01"> Expire is just 2020-01-01</a>
+]
+</section>
+<article>
+	Count:  <?= $count ?>
+	Expire: <?= $result ?>
+</article>

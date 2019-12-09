@@ -1,103 +1,148 @@
 <?php
 /**
- * unit-test:/unit/form/config.php
+ * module-testcase:/unit/form/config.inc.php
  *
- * @creation  2018-05-15
+ * @creation  2019-03-01
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
 //	...
 $form = [];
-$form['name']	 = 'testcase';
+$form['name'] = 'testcase-unit-form';
 
 //	...
-$name  = 'text';
 $input = [];
-$input['label']	 = 'Text';
-$input['name']	 = $name;
+$input['name']	 = 'text';
 $input['type']	 = 'text';
-$input['rule']	 = 'required, number';
-$input['placeholder'] = 'Required and Number only';
-$form['input'][$name] = $input;
+$input['label']	 = 'Text';
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['placeholder'] = 'one line text';
+$input['validate'] = [
+	'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'textarea';
 $input = [];
-$input['label']	 = 'Textarea';
-$input['name']	 = $name;
+$input['name']	 = 'password';
+$input['type']	 = 'password';
+$input['label']	 = 'Password';
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['placeholder'] = 'password';
+$input['validate'] = [
+	'required' => true,
+	'short'    => 8,
+	'long'     => 10,
+];
+$form['input'][] = $input;
+
+//	...
+$input = [];
+$input['name']	 = 'textarea';
 $input['type']	 = 'textarea';
-$input['rule']	 = 'english';
-$input['placeholder'] = 'Alphabet and Number only';
-$form['input'][$name] = $input;
+$input['label']	 = 'Textarea';
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['placeholder'] = 'multi line text area';
+$input['validate'] = [
+	'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'select';
 $input = [];
+$input['name']	 = 'select';
+$input['type']	 = 'select';
 $input['label']	 = 'Select';
-$input['name']	 = $name;
-$input['type']	 = 'select';
-$input['option'] = ['','Android','Blackberry','Cymbian'];
-$form['input'][$name] = $input;
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['option'] = [
+	''          => '',
+	'apple'     => 'Apple',
+	'google'    => 'Google',
+	'microsoft' => 'Microsoft',
+];
+$input['validate'] = [
+		'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'multiple';
 $input = [];
-$input['label']	 = 'Multiple';
-$input['name']	 = $name;
-$input['type']	 = 'select';
-$input['multiple'] = true;
-$input['option'] = ['a'=>'Android','b'=>'Blackberry','c'=>'Cymbian'];
-$form['input'][$name] = $input;
-
-//	...
-$name  = 'radio';
-$input = [];
-$input['label']	 = 'Radio';
-$input['name']	 = $name;
+$input['name']	 = 'radio';
 $input['type']	 = 'radio';
-$input['option'] = ['a'=>'Android','b'=>'Blackberry','c'=>'Cymbian'];
-$form['input'][$name] = $input;
+$input['label']	 = 'Radio';
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['option'] = [
+	'apple'     => 'Apple',
+	'google'    => 'Google',
+	'microsoft' => 'Microsoft',
+];
+$input['validate'] = [
+	'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'checkbox';
 $input = [];
+$input['name']	 = 'checkbox';
+$input['type']	 = 'checkbox';
 $input['label']	 = 'Checkbox';
-$input['name']	 = $name;
-$input['type']	 = 'checkbox';
-$input['option'] = ['a'=>'Android','b'=>'Blackberry','c'=>'Cymbian'];
-$form['input'][$name] = $input;
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['option'] = [
+	'apple'     => 'Apple',
+	'google'    => 'Google',
+	'microsoft' => 'Microsoft',
+];
+$input['validate'] = [
+	'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'cookie';
 $input = [];
-$input['label']	 = 'Cookie';
-$input['name']	 = $name;
-$input['type']	 = 'checkbox';
-$input['cookie'] = true;
-$input['option'] = ['cookie'=>'Save to cookie. (Cross over sessions)'];
-$input['rule']	 = 'required';
-$form['input'][$name] = $input;
+$input['name']	 = 'multiple';
+$input['type']	 = 'select';
+$input['label']	 = 'Multiple';
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['multiple'] = true;
+$input['option'] = [
+	'apple'     => 'Apple',
+	'google'    => 'Google',
+	'microsoft' => 'Microsoft',
+];
+$input['validate'] = [
+	'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'session';
 $input = [];
-$input['label']	 = 'Session';
-$input['name']	 = $name;
+$input['name']	 = 'agree';
 $input['type']	 = 'checkbox';
-$input['session']= false;
-$input['option'] = ['Does not save value. (Do not save to session)'];
-$input['rule']	 = 'required';
-$form['input'][$name] = $input;
+$input['label']	 = 'Agree';
+$input['cookie'] =  true;
+$input['session']=  true;
+$input['option'] = [
+	'1' => 'I agree',
+];
+$input['validate'] = [
+	'required' => true,
+];
+$form['input'][] = $input;
 
 //	...
-$name  = 'file';
 $input = [];
-$input['label']	 = 'File';
-$input['name']	 = $name;
-$input['type']	 = 'file';
-$form['input'][$name] = $input;
+$input['name']	 = 'button';
+$input['type']	 = 'button';
+$input['value']	 = 'Submit';
+$form['input'][] = $input;
 
-//	...
 return $form;

@@ -1,52 +1,51 @@
 <?php
 /**
- * unit-test:/index.php
+ * module-testcase:/index.php
  *
- * @creation  2018-04-12
+ * @creation  2019-03-01
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
+
+/** namespace
+ *
+ * @creation  2019-02-20
+ */
+namespace OP;
+
 //	...
 if(!Env::isAdmin() ){
+	echo $_SERVER['REMOTE_ADDR'];
 	return;
-}
+};
 
-//	Include local functions.
-include('index.inc.php');
-include('Nav.class.php');
-
-//	Set "testcase" meta URL.
-RootPath('testcase', ConvertPath('app:/_testcase'));
+/* @var $app \OP\UNIT\App */
+$app->Title('testcase');
 
 //	...
-App::WebPack('testcase:/index.css');
-App::WebPack('testcase:/nav-right.css');
-App::WebPack('testcase:/breadcrumb.css');
+$root_path = dirname( $app->Unit('Router')->EndPoint() );
 
 //	...
-$args = App::Args();
+RootPath('testcase', $root_path);
 
 //	...
-if( file_exists( $file = join('/', $args).'.php') ){
-	//	...
-}else if( file_exists( $file = join('/', $args).'/action.php' ) ){
-	//	...
-}else{
-	//	...
-	array_pop($args);
-
-	//	...
-	if( file_exists( $file = join('/', $args).'/action.php' ) ){
-		//	...
-	}else{
-		$file = null;
-	}
-}
+$app->Template('index.phtml');
 
 //	...
-App::Title('TEST CASE | '.join(' - ', $args));
+$app->Template('controller.php');
 
 //	...
-App::Template('index.phtml',['file'=>$file]);
+echo '<hr/>'.PHP_EOL;
+
+//	...
+Html(null, 'hr');
+Html( 'momory usage: ' . memory_get_usage() / 1000 .'KB (max: '. memory_get_peak_usage() / 1000 .'KB)');
+Debug::Set('PHP' , PHP_VERSION);
+Debug::Set('SAPI', php_sapi_name());
+Debug::Set('OP'  , Env::isLocalhost() ? 'localhost': geoip_country_code_by_name('onepiece-framework.com'));
+Debug::Set('test',true);
+Debug::Set('test',false);
+Debug::Set('test',null);
+Debug::Out();

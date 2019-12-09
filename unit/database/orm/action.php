@@ -1,79 +1,72 @@
 <?php
 /**
- * unit-test:/unit/database/orm/action.php
+ * module-testcase:/unit/database/orm/action.php
  *
- * @creation  2018-06-20
+ * @creation  2019-04-19
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-define('__DSN__', 'mysql://testcase:password@localhost:3306?charset=utf8');
 
+/** namespace
+ *
+ * @creation  2019-04-19
+ */
+namespace OP;
+
+/* @var $app \OP\UNIT\App */
 /* @var $orm \OP\UNIT\ORM */
-if(!$orm = Unit::Instance('ORM') ){
-	return;
-}
+$args = Unit::Singleton('Router')->Args();
+$orm  = Unit::Singleton('ORM');
+$prod = $args[2] ?? null;
+$configs = include(__DIR__.'/../config.db.php');
+$config  = $configs[$prod] ?? null;
+$request = $app->Request();
+$ai      = $request['ai'] ?? null;
+$table   = 't_table';
+$qql     = $ai ? "{$table}.ai = {$ai}": $table;
 
 //	...
-$nav = new Nav();
-$nav->Set('Create'   , ['pval'=>'']   , false);
-$nav->Set('Self-test', ['selftest'=>1], false);
-$nav->Set('Debug(ON)', ['debug'=>1]);
-$nav->Set('Debug(OFF)',['debug'=>0]);
-$nav->Out();
+define('_DSN_', 'mysql://orm@localhost:80?pass=password&database='._DATABASE_NAME_, true);
 
 //	...
-if( $_GET['selftest'] ?? false ){
-	include('self-test.inc.php');
-	return;
-}
-
-//	...
-if(!$orm->Connect(__DSN__) ){
-	return;
-}
-
-//	...
-if(!$orm->Config('config.inc.php') ){
-	return;
-}
-
-//	...
-$database = 'testcase';
-$table    = 't_orm';
-$pkey = $_GET['pkey'] ?? null;
-$pval = $_GET['pval'] ?? null;
-
-//	...
-$orm->DB()->Database($database);
-
-//	...
-$record = $pkey ? $orm->Find("$table.$pkey = $pval"): $record = $orm->Create($table);
-
-//	...
-if( $valid = $record->Form()->Validate() ){
+if( $_GET['selftest'] ?? null ){
 	//	...
-	$gmt = Time::GMT();
+	$orm->Selftest(__DIR__.'/selftest.config.php');
 
 	//	...
-	if(!$record->isFound() ){
-		$record->Set('created', $gmt);
-	}
+	return;
+};
 
-	//	...
-	if( $saved = $orm->Save($record) ){
-		//	...
-		if( $record->isFound() ){
-			$record->Set('updated', $gmt);
-			$orm->Save($record);
-		}
-	}
-}
+//  Connect database.
+$orm->Connect($config);
 
-// D( $orm->DB()->Queries() );
+//  Generate "Record" object at database table defined.
+$record = $orm->Find($qql);
+
+//  Is found?
+Html('Is record found? - '. $record->isFound() ? 'Yes':'No');
+
+//  Change value.
+$record->required = 2;
+D($record->required);
+
+//	Check if delete order.
+if( $app->Request()['delete'] ?? null ){
+	//	Do delete record.
+	if( $orm->Delete($record) ){
+		//	Get empty record.
+		$record = $orm->Create('t_orm');
+	};
+};
+
+//	Automatically. (Validate is includion)
+$orm->Save($record);
+
+//  Display form of html.
+include(__DIR__.'/form.phtml');
 
 //	...
-App::Template('form.inc.php',['record'=>$record,'valid'=>$valid,'saved'=>$saved ?? null]);
-App::Template('pager.inc.php',['orm'=>$orm]);
+$orm->Debug();
+$record->Form()->Debug();

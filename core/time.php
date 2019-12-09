@@ -1,29 +1,34 @@
 <?php
 /**
- * unit-test:/core/time.php
+ * module-testcase:/core/time.php
  *
- * @creation  2018-05-01
+ * @created   2019-04-18
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
 
-//	ICE AGE
-Time::Set('2020-01-01 09:00:00');
+/** namespace
+ *
+ * @created   2019-04-18
+ */
+namespace OP;
+
+//date_default_timezone_set('asia/tokyo');
 
 //	...
 $temp = [];
-$temp['Time::Timezone()']	 = Time::Timezone();
-$temp['date(\'P\')']		 = date('P');
-$temp['Time::Get()']		 = Time::Get();
-$temp['Time::Get(true)']	 = Time::Get(true);
-$temp['REQUEST_TIME']		 = $_SERVER['REQUEST_TIME'];
-$temp['gmdate()']			 = gmdate('Y-m-d H:i:s');
-$temp['Time::Date()']		 = Time::Date();
-$temp['Time::Datetime()']	 = Time::Datetime();
-$temp['Time::GMT()']		 = Time::GMT();
+$temp['timezone']         = date_default_timezone_get();
+$temp['time']             = time();
+$temp['gmtime']           = strtotime(gmdate('Y-m-d H:i:s'));
+$temp['time()']['date']   = date(  'Y-m-d H:i:s', time());
+$temp['time()']['gmdate'] = gmdate('Y-m-d H:i:s', time());
 
 //	...
-HTML('Did freeze of time goto 2020-01-01.');
+$temp['op']['time']   = Env::Time();
+$temp['op']['date']   =   date('Y-m-d H:i:s', Env::Time());
+$temp['op']['gmdate'] = gmdate('Y-m-d H:i:s', Env::Time());
+
+//	...
 D($temp);

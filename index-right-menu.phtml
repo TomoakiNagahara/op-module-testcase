@@ -1,0 +1,87 @@
+<?php
+/**
+ * module-testcase:/index-right-menu.phtml
+ *
+ * @creation  2019-03-20
+ * @version   1.0
+ * @package   module-testcase
+ * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @copyright Tomoaki Nagahara All right reserved.
+ */
+
+/** namespace
+ *
+ * @creation  2019-03-20
+ */
+namespace OP;
+
+/* @var $app UNIT\App */
+$root = $app->URL('testcase:/');
+
+//	...
+$lists = [];
+$lists['core'] = [
+	'time'       => 'Time',
+	'env'        => 'Env',
+	'error'      => 'Error',
+	'fatal'      => 'Fatal',
+	'rootpath'   => 'RootPath',
+	'metapath'   => 'MetaPath',
+	'converturl' => 'ConvertURL',
+	'notice'     => 'Notice',
+	'cookie'     => 'Cookie',
+	'session'    => 'Session',
+	'debug'      => 'Debug',
+];
+$lists['app'] = [
+	'security'   => 'Security',
+	'etag'       => 'Etag',
+	'userid'     => 'UserID',
+	'cdn'        => 'CDN',
+	'locale'     => 'Locale',
+];
+$lists['unit'] = [
+	'app'        => 'App',
+	'api'        => 'Api',
+	'dump'       => 'Dump',
+	'notice'     => 'Notice',
+	'http'       => 'Http',
+	'router'     => 'Router',
+	'form'       => 'Form',
+	'database'   => 'Database',
+	'webpack'    => 'WebPack',
+	'curl'       => 'Curl',
+	'google'     => 'Google',
+	'i18n'       => 'i18n',
+	'japan'      => 'Japan',
+];
+
+/* @var $app \OP\UNIT\App */
+?>
+<!-- Right float menu -->
+<div class="testcase-right-float-menu">
+	<ul>
+		<?php foreach( $lists as $key => $list ): ?>
+		<li>
+			<a href="<?= "{$root}{$key}" ?>"><?= $key ?></a>
+			<ul>
+				<?php foreach( $list as $value => $label ): ?>
+				<li><a href="<?= "{$root}{$key}/{$value}/" ?>"><?= $label ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+		</li>
+		<?php endforeach; ?>
+	</ul>
+</div>
+<style>
+div.testcase-right-float-menu {
+	float:   right;
+	border:  1px solid black;
+	margin:  0.5em 1em;
+	padding: 0.5em 1em;
+}
+
+div.testcase-right-float-menu a {
+	white-space: nowrap;
+}
+</style>

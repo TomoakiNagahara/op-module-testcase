@@ -1,63 +1,28 @@
 <?php
 /**
- * unit-test:/unit/database/selftest.php
+ * unit-testcase:/unit/database/selftest/action.php
  *
- * @creation  2018-05-11
+ * @creation  2019-04-12
  * @version   1.0
- * @package   unit-test
+ * @package   unit-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-/* @var $db \OP\UNIT\Database */
-$dbs = include('../connect/action.php');
 
-//	Load selftest unit.
-if(!Unit::Load('selftest') ){
-	return;
-}
+/** namespace
+ *
+ * @creation  2019-04-12
+ */
+namespace OP;
 
-//	Setup configuration.
-include('testcase@db.inc.php');
-
-//	Set configuration.
-\OP\UNIT\SELFTEST\Inspector::Auto( OP\UNIT\SELFTEST\Configer::Get(), $dbs['mysql'] );
-
-//	Get result.
-          \OP\UNIT\SELFTEST\Inspector::Build();
-$failed = \OP\UNIT\SELFTEST\Inspector::Failed();
+/* @var $app      UNIT\App      */
+/* @var $selftest UNIT\Selftest */
+$selftest = $app->Unit('Selftest');
 
 //	...
-while( $message = \OP\UNIT\SELFTEST\Inspector::Error() ){
-	printf('<p class="testcase selftest bold error">%s</p>', $message);
-}
+$selftest->Auto(__DIR__.'/config.inc.php');
 
 //	...
-$navies = [];
-
-//	...
-$navi = [];
-$navi['label'] = 'Debug(ON)';
-$navi['url']   = '?debug=1';
-$navies[] = $navi;
-
-//	...
-$navi = [];
-$navi['label'] = 'Debug(OFF)';
-$navi['url']   = '?debug=0';
-$navies[] = $navi;
-
-//	...
-__navigation($navies);
-
-//	...
-if( $failed !== false ){
-	\OP\UNIT\SELFTEST\Inspector::Form();
-}
-
-//	...
-\OP\UNIT\SELFTEST\Inspector::Result();
-
-// ...
-if( ifset($_GET['debug']) or Notice::Has() ){
-	\OP\UNIT\SELFTEST\Inspector::Debug();
-}
+if( $_GET['debug']['selftest'] ?? null ){
+	$selftest->Debug();
+};

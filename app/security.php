@@ -2,15 +2,13 @@
 /**
  * unit-test:/app/security.php
  *
- * @creation  2010-01-10
+ * @created   2010-01-10
  * @version   1.0
  * @package   unit-test
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-include('menu.phtml');
-
+/* @var $app OP\UNIT\App */
 //	...
 $urls = [];
 $urls[] = 'app:/asset/test/secret.txt';
@@ -20,13 +18,13 @@ $urls[] = 'testcase:/secret.csv';
 $urls[] = 'testcase:/secret.log';
 
 //	...
-$git = rtrim( ConvertURL('app:/.git/HEAD'), '/');
+$git = rtrim( $app->URL('app:/.git/HEAD'), '/');
 
 ?>
 <hr>
 <ul>
 	<li><a href="<?= $git ?>"><?= $git ?></a></li>
 	<?php foreach( $urls as $url ): ?>
-	<li><a href="<?= ConvertURL($url) ?>"><?= $url ?></a></li>
+	<li><a href="<?= $app->URL($url) ?>"><?= $url ?></a></li>
 	<?php endforeach; ?>
 </ul>

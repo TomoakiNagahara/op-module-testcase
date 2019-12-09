@@ -1,48 +1,59 @@
 <?php
 /**
- * unit-test:/unit/database/orm/form.phtml
+ * module-testcase:/unit/database/orm/form.phtml
  *
- * @creation  2018-06-20
+ * @created   2019-04-19
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-if( false ){
-	$record = null;
-};
+
+/** namespace
+ *
+ * @creation  2019-04-19
+ */
+namespace OP;
+
+/* @var $record \OP\UNIT\ORM\Record */
+
+//  Generate "Form" object.
+$form = $record->Form();
 
 //	...
-$form = $record->Form();
+$form->Validate();
+
+//	...
+$disabled = $record->isFound() ? '':'disabled';
 ?>
-<?php $form->Start() ?>
-<table>
-	<?php foreach( $record->Column() as $name => $column ): ?>
-	<tr>
-		<th><?php $form->Label($name) ?></th>
-		<td><?php $form->Input($name) ?></td>
-		<td><?php $form->Error($name) ?></td>
-	</tr>
-	<?php endforeach; ?>
-	<tr>
-		<td></td>
-		<td>
-			<?php if( ($_SERVER['REQUEST_METHOD'] === 'POST') and empty($valid) ): ?>
-			<p class="i0 error">
-				<?= $form->Token() ? 'Validate has failure.':'Token is not been sent.' ?>
-			</p>
-			<?php endif; ?>
-			<?php if( isset($saved) ): ?>
-			<p class="i0 <?= $saved ? 'success':'error' ?>">
-				<?= $saved ? 'Save record was successful.':'There are no changes to save.' ?>
-			</p>
-			<?php endif; ?>
-			<button>
-				<?= $record->isFound() ? 'Update':'Create' ?>
-			</button>
-		</td>
-		<td></td>
-	</tr>
-</table>
-<?php $form->Finish() ?>
+<section>
+	<?php $form->Start() ?>
+	<table>
+		<tr>
+			<td>ai</td>
+			<td><?php $form->Input('ai') ?></td>
+		</tr>
+		<?php foreach(['ai','required','number','select','checkbox','radio'] as $input_name): ?>
+		<tr>
+			<td><?php $form->Label($input_name) ?></td>
+			<td><?php $form->Input($input_name) ?></td>
+			<td><?php $form->Error($input_name) ?></td>
+		</tr>
+		<?php endforeach; ?>
+		<tr>
+			<td>timestamp</td>
+			<td><?php $form->Value('timestamp') ?></td>
+		</tr>
+		<tr>
+			<td colspan=3 style="text-align:center;">
+				<button name="save"> Save </button>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=3 style="text-align:center;">
+				<input type="submit" name="delete" value=" Delete " <?= $disabled ?> />
+			</td>
+		</tr>
+	</table>
+	<?php $form->Finish() ?>
+</section>

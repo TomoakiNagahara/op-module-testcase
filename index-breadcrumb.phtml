@@ -1,0 +1,39 @@
+<?php
+/**
+ * module-testcase:/index-right-menu.phtml
+ *
+ * @creation  2019-03-20
+ * @version   1.0
+ * @package   module-testcase
+ * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @copyright Tomoaki Nagahara All right reserved.
+ */
+
+/** namespace
+ *
+ * @creation  2019-03-20
+ */
+namespace OP;
+
+/* @var $app \OP\UNIT\App */
+$root = $app->URL('testcase:/');
+
+?>
+
+<!-- Breadcrumb navigation -->
+<hr/>
+<div class="breadcrumb-navigation">
+	<span class="arg"><a href="<?= $root ?>">testcase</a></span>
+	<?php foreach( $app->Unit('Router')->Args() as $arg ): ?>
+	<span class="arg"><a href="<?= ($root .= "{$arg}/") ?>"><?= $arg ?></a></span>
+	<?php endforeach; ?>
+</div>
+<hr/>
+
+<style>
+.breadcrumb-navigation span:not(:last-child):after {
+	margin-left:  0.4em;
+	margin-right: 0.1em;
+	content: ">";
+}
+</style>

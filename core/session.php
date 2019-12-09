@@ -1,44 +1,29 @@
 <?php
 /**
- * unit-test:/core/session.php
+ * module-testcase:/core/session.php
  *
- * @creation  2018-04-18
+ * @creation  2019-04-09
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-App::Template('session.phtml');
+
+/** namespace
+ *
+ * @creation  2019-04-09
+ */
+namespace OP;
+
+/* @var $app UNIT\App */
 
 //	...
-switch( $action = $_GET['action'] ?? null ){
-	case 'notice':
-		Notice::Set(__FILE__);
-		break;
-
-	case 'app':
-		break;
-
-	case 'whole':
-		$_SESSION = [];
-		break;
-
-	default:
-		Notice::Set("This action has not been set. ($action)");
-}
+$count = & $app->Session('count');
 
 //	...
-if( empty($_SESSION['count']) ){
-	$_SESSION['count'] = 0;
-}
+$count++;
 
-//	...
-$count = App::Session('count');
-App::Session('count', $count +1);
-
-//	...
-D($_SESSION);
-
-//	...
-$_SESSION['count']++;
+?>
+<article>
+	Count:  <?= $count ?>
+</article>

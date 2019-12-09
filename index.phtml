@@ -1,40 +1,23 @@
 <?php
 /**
- * unit-test:/index.phtml
+ * module-testcase:/index.phtml
  *
- * @creation  2018-04-17
+ * @creation  2019-03-01
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-$file = \OP\UNIT\NEWWORLD\Template::Args('file');
+
+/** namespace
+ *
+ * @created   2019-03-01
+ */
+namespace OP;
+
+/* @var $app \OP\UNIT\App */
 ?>
-<section id="testcase">
-	<h1>TEST CASE</h1>
-	<?php
-	//	...
-	App::Template('nav-right.phtml');
-
-	//	...
-	App::Template('breadcrumb.phtml');
-
-	//	...
-	if( $file ){
-		App::Template($file);
-	}else{
-		//	...
-		D( 'PHP version is ' . PHP_VERSION );
-
-		//	...
-		Html( ConvertPath('testcase:/') );
-		Html( ConvertURL('testcase:/')  );
-	}
-
-	//	...
-	if( $_GET['phpinfo'] ?? null ){
-		phpinfo();
-	};
-	?>
+<section>
+<?php $app->Template('index-right-menu.phtml') ?>
+<?php $app->Template('index-breadcrumb.phtml') ?>
 </section>

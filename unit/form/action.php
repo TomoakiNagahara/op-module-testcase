@@ -1,42 +1,22 @@
 <?php
 /**
- * unit-test:/unit/form/action.php
+ * module-testcase:/unit/form/action.php
  *
- * @creation  2018-05-15
+ * @creation  2019-03-01
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-if( $_GET['sleep'] ?? 0 ){
-	sleep($_GET['sleep']);
-}
+/* @var $app    \OP\UNIT\App  */
 
-/* @var $form \OP\UNIT\Form */
-if(!$form = Unit::Instance('Form') ){
+//	...
+if(!$form = $app->Unit('Form') ){
 	return;
-}
+};
 
 //	...
-$form->Config('./config.inc.php');
+$form->Config(__DIR__.'/config.inc.php');
 
 //	...
-if( $_GET['clear'] ?? false ){
-	$form->Clear();
-}else{
-	$form->Validate();
-}
-
-//	...
-Nav::Set('Sleep(ON)' , ['sleep'=>1]);
-Nav::Set('Sleep(OFF)', ['sleep'=>0]);
-Nav::Set('Debug(ON)' , ['debug'=>1]);
-Nav::Set('Debug(OFF)', ['debug'=>0]);
-Nav::Out();
-
-//	...
-App::Template('index.phtml', ['form'=>$form]);
-
-//	...
-D( $form->Values(), $form->Test(), $form->Debug() );
+include(__DIR__.'/action.phtml');

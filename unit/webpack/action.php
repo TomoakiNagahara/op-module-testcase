@@ -1,38 +1,16 @@
 <?php
 /**
- * unit-test:/unit/webpack/action.php
+ * module-testcase:/unit/webpack/action.php
  *
- * @creation  2018-04-12
+ * @creation  2019-03-22
  * @version   1.0
- * @package   unit-test
+ * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
-//	...
-if(!Unit::Load('webpack') ){
-	return;
-}
-
-//	...
-\OP\UNIT\WebPack::Js(__DIR__.'/test');
-
-//	...
-\OP\UNIT\WebPack::Css(__DIR__.'/test');
-
-//	...
-\OP\UNIT\WebPack::Out('js');
-
-//	...
-\OP\UNIT\WebPack::Out('css');
-
-//	...
-\OP\UNIT\WebPack::Js(__DIR__.'/test');
-
-//	...
-\OP\UNIT\WebPack::Css(__DIR__.'/test');
-
-//	...
-echo \OP\UNIT\WebPack::Get('js');
-
-//	...
-echo \OP\UNIT\WebPack::Get('css');
+/* @var $app     \OP\UNIT\App     */
+/* @var $webpack \OP\UNIT\WebPack */
+/* @var $args     array           */
+$webpack = $app->Unit('WebPack');
+$webpack->Auto('testcase.js');
+$webpack->Auto('testcase.js');
