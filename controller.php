@@ -46,5 +46,5 @@ while( $arg = array_shift($args) ){
 	};
 
 	//	...
-	$app->Template($file);
+	$app->Template($file, ['args'=>$args]);
 };
