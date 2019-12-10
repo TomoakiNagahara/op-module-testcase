@@ -40,21 +40,18 @@ $lists['app'] = [
 	'cdn'        => 'CDN',
 	'locale'     => 'Locale',
 ];
-$lists['unit'] = [
-	'app'        => 'App',
-	'api'        => 'Api',
-	'dump'       => 'Dump',
-	'notice'     => 'Notice',
-	'http'       => 'Http',
-	'router'     => 'Router',
-	'form'       => 'Form',
-	'database'   => 'Database',
-	'webpack'    => 'WebPack',
-	'curl'       => 'Curl',
-	'google'     => 'Google',
-	'i18n'       => 'i18n',
-	'japan'      => 'Japan',
-];
+$lists['unit'] = [];
+
+//	...
+foreach( scandir( ConvertPath('unit:/') ) as $file ){
+	//	...
+	if( $file[0] === '.' or $file[0] === '_' ){
+		continue;
+	}
+
+	//	...
+	$lists['unit'][$file] = ucfirst($file);
+}
 
 /* @var $app \OP\UNIT\App */
 ?>
