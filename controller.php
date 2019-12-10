@@ -2,7 +2,7 @@
 /**
  * module-testcase:/index.php
  *
- * @creation  2019-03-01
+ * @created   2019-03-01
  * @version   1.0
  * @package   module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
@@ -11,7 +11,7 @@
 
 /** namespace
  *
- * @creation  2019-02-20
+ * @created   2019-02-20
  */
 namespace OP;
 
