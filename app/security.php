@@ -11,19 +11,15 @@
 /* @var $app OP\UNIT\App */
 //	...
 $urls = [];
-$urls[] = 'app:/asset/test/secret.txt';
-$urls[] = 'testcase:/.dot';
-$urls[] = 'testcase:/secret.txt';
-$urls[] = 'testcase:/secret.csv';
-$urls[] = 'testcase:/secret.log';
-
-//	...
-$git = rtrim( $app->URL('app:/.git/HEAD'), '/');
-
+$urls[] = 'asset:/testcase/app/security/secret.txt';
+$urls[] = 'asset:/testcase/app/security/secret.csv';
+$urls[] = 'asset:/testcase/app/security/secret.log';
+$urls[] = 'testcase:/app/security/.secret';
+$urls[] = 'testcase:/app/security/_secret';
+$urls[] = 'app:/.git/HEAD';
 ?>
 <hr>
 <ul>
-	<li><a href="<?= $git ?>"><?= $git ?></a></li>
 	<?php foreach( $urls as $url ): ?>
 	<li><a href="<?= $app->URL($url) ?>"><?= $url ?></a></li>
 	<?php endforeach; ?>
