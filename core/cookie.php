@@ -21,6 +21,7 @@ $count = Cookie::Get('count', 0);
 //	...
 $expire = $_GET['expire'] ?? 10;
 $result = Cookie::Set('count', $count+1, $expire);
+
 ?>
 <section>
 [
@@ -29,6 +30,7 @@ $result = Cookie::Set('count', $count+1, $expire);
 ]
 </section>
 <article>
-	Count:  <?= $count ?>
+	Count:  <?= $count  ?>
 	Expire: <?= $result ?>
 </article>
+<?php D($_COOKIE); ?>
