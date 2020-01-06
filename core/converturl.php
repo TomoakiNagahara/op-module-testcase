@@ -15,11 +15,37 @@
  */
 namespace OP;
 
-//	Convert test, Check alias path.
-$url = ConvertURL( __DIR__);
-$io  = $url === __DIR__ ? false : true;
-D( $io, $url );
+//	Init.
+$results = [];
 
-//	Is slash at end of url.
-$io = $url[strlen($url)-1] === '/' ? true : false;
-D( $io, 'Slash at end of url.' );
+//	Base URL
+$base_url = ConvertURL('testcase:/core/converturl');
+
+//	Check convert result.
+$results['standard']['REQUEST_URL'] = $_SERVER['REQUEST_URI'];
+$results['standard']['ConvertURL']  = $base_url;
+$results['standard']['result'] = (strpos($_SERVER['REQUEST_URL'], $base_url) === 0) ? true: false;
+
+//	Check slash of tail.
+$results['slash of tail'][] = ConvertURL('testcase:/');
+$results['slash of tail'][] = ConvertURL('testcase:/core');  // <-- Is directory.
+$results['slash of tail'][] = ConvertURL('testcase:/core/'); // <-- Is directory.
+$results['slash of tail'][] = ConvertURL('testcase:/core/converturl'); // <-- Not directory.
+$results['slash of tail'][] = ConvertURL('testcase:/core/converturl/');
+
+//	...
+$result = true;
+
+//	...
+foreach( $results['slash of tail'] as $index => $value ){
+	$evalu = ($index === 3) ? false: true;
+	$slash = $value[strlen($value)-1] === '/';
+	if( $evalu !== $slash ){
+		$result =  false;
+		Notice::set("Slash of tail is unmatch. ($index, $value)");
+	}
+}
+$results['slash of tail']['result'] = $result;
+
+//	Result.
+D($results);
