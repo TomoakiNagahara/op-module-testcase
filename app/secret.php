@@ -1,6 +1,6 @@
 <?php
 /**
- * unit-test:/app/security.php
+ * unit-test:/app/secret.php
  *
  * @created   2010-01-10
  * @version   1.0
@@ -11,11 +11,11 @@
 /* @var $app OP\UNIT\App */
 //	...
 $urls = [];
-$urls[] = 'asset:/testcase/app/security/secret.txt';
-$urls[] = 'asset:/testcase/app/security/secret.csv';
-$urls[] = 'asset:/testcase/app/security/secret.log';
-$urls[] = 'testcase:/app/security/.secret';
-$urls[] = 'testcase:/app/security/_secret';
+$urls[] = 'asset:/testcase/app/secret/secret.txt';
+$urls[] = 'asset:/testcase/app/secret/secret.csv';
+$urls[] = 'asset:/testcase/app/secret/secret.log';
+$urls[] = 'testcase:/app/secret/.secret';
+$urls[] = 'testcase:/app/secret/_secret';
 $urls[] = 'app:/.git/HEAD';
 ?>
 <hr>
