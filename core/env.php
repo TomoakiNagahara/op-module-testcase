@@ -17,16 +17,14 @@ namespace OP;
 
 //	...
 $temp = [];
+$temp['ip_address'] = $_SERVER['REMOTE_ADDR'];
 $temp['admin']      = Env::isAdmin();
 $temp['localhost']  = Env::isLocalhost();
-$temp['ip_address'] = $_SERVER['REMOTE_ADDR'];
+$temp['locale']     = Env::Locale();
 
 //	Case sensitive.
-Env::Set('test',true);
-$temp['case_sensitive'] = Env::Get('TEST');
+Env::Set('testcase',[true]);
+$temp['case_sensitive'] = Env::Get('TESTCASE');
 
-//	...
+//	Display
 D($temp);
-
-//	...
-Env::Debug();
