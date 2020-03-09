@@ -25,7 +25,7 @@ if(!Env::isAdmin() ){
 $app->Title('testcase');
 
 //	...
-$root_path = dirname( Unit::Singleton('Router')->EndPoint() );
+$root_path = dirname( Unit('Router')->EndPoint() );
 
 //	...
 RootPath('testcase', $root_path);

@@ -24,7 +24,7 @@ $root = $app->URL('testcase:/');
 <hr/>
 <div class="breadcrumb-navigation">
 	<span class="arg"><a href="<?= $root ?>">testcase</a></span>
-	<?php foreach( Unit::Singleton('Router')->Args() as $arg ): ?>
+	<?php foreach( Unit('Router')->Args() as $arg ): ?>
 	<span class="arg"><a href="<?= ($root .= "{$arg}/") ?>"><?= $arg ?></a></span>
 	<?php endforeach; ?>
 </div>
