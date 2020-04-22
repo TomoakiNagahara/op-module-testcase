@@ -1,7 +1,7 @@
 <?php
 /** op-module-testcase:/core/email.php
  *
- * @created   2020-05-21
+ * @created   2020-04-23
  * @version   1.0
  * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
@@ -32,3 +32,19 @@ if( $to and $to_name ){
 }else{
 	Html('Empty $_GET["to"].');
 }
+
+/*
+//	Mail header injection
+$from    = "root@localhost";
+$to      = "root@localhost\r\nBcc: info@localhost";
+$subject = 'Mail header injection';
+$content = 'This is mail header injection test mail.';
+
+//	...
+$mail = new \OP\EMail();
+$mail->From($from);
+$mail->To($to);
+$mail->Subject($subject);
+$mail->Content($content);
+$mail->Send();
+*/
