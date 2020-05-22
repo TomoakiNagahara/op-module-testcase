@@ -17,11 +17,36 @@ namespace OP;
 
 /* @var $app \OP\UNIT\App */
 
-//	...
+//	Check if http or shell.
+if(!Env::isHttp() ){
+	$app->Template('controller.php');
+	return;
+}
+
+//	Load menu.css
 $app->WebPack('menu.css');
 
 ?>
-<section>
+<section id="testcase">
 <?php $app->Template('index-right-menu.phtml') ?>
 <?php $app->Template('index-breadcrumb.phtml') ?>
+<?php $app->Template('controller.php')         ?>
 </section>
+<?php
+//	...
+echo '<hr/>'.PHP_EOL;
+
+//	...
+Html(null, 'hr');
+Html( 'memory usage: ' . memory_get_usage() / 1000 .'KB (max: '. memory_get_peak_usage() / 1000 .'KB)');
+Debug::Set('PHP' , PHP_VERSION);
+Debug::Set('SAPI', php_sapi_name());
+/*
+Debug::Set('OP'  , Env::isLocalhost() ? 'localhost': geoip_country_code_by_name('onepiece-framework.com'));
+*/
+Debug::Set('test',true);
+Debug::Set('test',false);
+Debug::Set('test',null);
+Debug::Set('test',Env::Timestamp());
+Debug::Set('test',Env::Timestamp(1));
+Debug::Out();
