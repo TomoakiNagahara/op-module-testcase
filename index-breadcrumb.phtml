@@ -24,9 +24,13 @@ $root = $app->URL('testcase:/');
 <hr/>
 <div class="breadcrumb-navigation">
 	<span class="arg"><a href="<?= $root ?>">testcase</a></span>
-	<?php foreach( Unit('Router')->Args() as $arg ): ?>
-	<span class="arg"><a href="<?= ($root .= "{$arg}/") ?>"><?= $arg ?></a></span>
-	<?php endforeach; ?>
+	<?php
+	$args = [];
+	foreach( Unit('Router')->Args() as $arg ){
+		$args[] = explode('.', $arg)[0];
+		printf('<span class="arg"><a href="%s%s">%s</a></span>', $root, join('/',$args), $arg);
+	}
+	?>
 </div>
 <hr/>
 
