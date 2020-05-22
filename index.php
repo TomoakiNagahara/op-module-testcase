@@ -21,6 +21,9 @@ if(!Env::isAdmin() ){
 	return;
 };
 
+//	...
+require_once('function.php');
+
 /* @var $app \OP\UNIT\App */
 $app->Title('testcase');
 
