@@ -25,4 +25,13 @@ if(!$name = array_shift($args) ){
 }
 
 //	...
-Unit::Singleton($name)->Testcase($args);
+$path = "unit:/{$name}/testcase/action.php";
+
+//	...
+if( file_exists( ConvertPath($path, false) ) ){
+	//	...
+	Template($path, $args);
+}else{
+	//	...
+	Unit::Singleton($name)->Testcase($args);
+}
