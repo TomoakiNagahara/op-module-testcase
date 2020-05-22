@@ -19,7 +19,10 @@ namespace OP;
 Load('Template');
 
 /* @var $args array */
-$name = array_shift($args);
+if(!$name = array_shift($args) ){
+	Template('README.md');
+	return;
+}
 
 //	...
 Unit::Singleton($name)->Testcase($args);
