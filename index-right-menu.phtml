@@ -20,36 +20,39 @@ $root = $app->URL('testcase:/');
 
 //	...
 $lists = [];
-$lists['core'] = [
-	'time'       => 'Time',
-	'env'        => 'Env',
-	'error'      => 'Error',
-	'fatal'      => 'Fatal',
-	'rootpath'   => 'RootPath',
-	'metapath'   => 'MetaPath',
-	'converturl' => 'ConvertURL',
-	'notice'     => 'Notice',
-	'cookie'     => 'Cookie',
-	'session'    => 'Session',
-	'debug'      => 'Debug',
-	'config'     => 'Config',
-	'unit'       => 'Unit',
-];
-$lists['php'] = [
-	'geoip'      => 'GeoIP',
-];
-$lists['app'] = [
-	'security'   => 'Security',
-	'etag'       => 'Etag',
-	'userid'     => 'UserID',
-	'cdn'        => 'CDN',
-	'locale'     => 'Locale',
-	'tooltip'    => 'Tooltip',
-];
-$lists['unit'] = [];
 
-//	...
-foreach( scandir( ConvertPath('unit:/') ) as $file ){
+//	php, core, app
+foreach( ['php','core','app'] as $cat ){
+	//	...
+	foreach( scandir( __DIR__.'/'.$cat ) as $file ){
+		//	...
+		$path = __DIR__."/{$cat}/$file";
+
+		//	...
+		if( is_dir($path) ){
+			continue;
+		}
+
+		//	...
+		list($name, $ext) = explode('.', $file);
+
+		//	...
+		if( $ext !== 'php' ){
+			continue;
+		}
+
+		//	...
+		if( $name === 'action' ){
+			continue;
+		}
+
+		//	...
+		$lists[$cat][$name] = ucfirst($name);
+	}
+}
+
+//	unit
+foreach( scandir( ConvertPath('asset:/unit/') ) as $file ){
 	//	...
 	if( $file[0] === '.' or $file[0] === '_' ){
 		continue;
