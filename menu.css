@@ -1,0 +1,25 @@
+<?php
+/** op-module-testcase:/menu.css
+ *
+ * @created   2020-05-21
+ * @version   1.0
+ * @package   op-module-testcase
+ * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @copyright Tomoaki Nagahara All right reserved.
+ */
+?>
+
+#testcase div.menu:before {
+	margin-right: 0.5em;
+	content: '[';
+}
+
+#testcase div.menu:after {
+	margin-left: 0.5em;
+	content: ']';
+}
+
+#testcase div.menu span.menu:not(:last-child):after {
+	margin: 0.5em;
+	content: '|';
+}
