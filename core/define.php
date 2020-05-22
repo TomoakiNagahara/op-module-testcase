@@ -19,7 +19,12 @@ namespace OP;
 $temp = [];
 $temp['_OP_NAME_SPACE_'] = _OP_NAME_SPACE_;
 $temp['_OP_APP_ID_']     = _OP_APP_ID_;
+/*
 $temp['_OP_SALT_']       = _OP_SALT_;
+*/
 $temp['_OP_DATE_']       = _OP_DATE_;
 $temp['_OP_DATE_TIME_']  = _OP_DATE_TIME_;
+$temp['_OP_DENY_IP_']    = _OP_DENY_IP_;
+
+//	...
 D($temp);
