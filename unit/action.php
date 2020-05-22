@@ -15,6 +15,9 @@
  */
 namespace OP;
 
+//	...
+Load('Template');
+
 /* @var $args array */
 $name = array_shift($args);
 
