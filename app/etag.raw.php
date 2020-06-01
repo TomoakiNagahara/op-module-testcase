@@ -1,10 +1,9 @@
 <?php
-/**
- * module-testcase:/app/etag.raw.php
+/** op-module-testcase:/app/etag.raw.php
  *
  * @created   2019-05-08  Separate from etag.php
  * @version   1.0
- * @package   module-testcase
+ * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */

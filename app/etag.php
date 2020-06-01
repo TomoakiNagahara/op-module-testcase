@@ -1,11 +1,10 @@
 <?php
-/**
- * module-testcase:/app/etag.php
+/** op-module-testcase:/app/etag.php
  *
  * @created   2019-03-01
  * @updated   2019-05-08  Separate to Raw and App.
  * @version   1.0
- * @package   module-testcase
+ * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */

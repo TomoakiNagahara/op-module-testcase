@@ -1,17 +1,15 @@
 <?php
-/**
- * module-testcase:/core/session.php
+/** op-module-testcase:/core/session.php
  *
  * @creation  2019-04-09
  * @version   1.0
- * @package   module-testcase
+ * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
 
 /** namespace
  *
- * @creation  2019-04-09
  */
 namespace OP;
 

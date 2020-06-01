@@ -1,6 +1,5 @@
 <?php
-/**
- * module-testcase:/core/cookie.php
+/** op-module-testcase:/core/cookie.php
  *
  * @creation  2019-03-16
  * @version   1.0
@@ -11,7 +10,6 @@
 
 /** namespace
  *
- * @creation  2019-02-20
  */
 namespace OP;
 

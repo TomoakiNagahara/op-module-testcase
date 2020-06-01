@@ -1,10 +1,9 @@
 <?php
-/**
- * module-testcase:/app/userid.php
+/** op-module-testcase:/app/userid.php
  *
- * @creation  2019-04-18
+ * @created   2019-04-18
  * @version   1.0
- * @package   module-testcase
+ * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */

@@ -1,14 +1,15 @@
 <?php
-/**
- * unit-test:/app/secret.php
+/** op-module-testcase:/app/secret.php
  *
  * @created   2010-01-10
  * @version   1.0
- * @package   unit-test
+ * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright Tomoaki Nagahara All right reserved.
  */
+
 /* @var $app OP\UNIT\App */
+
 //	...
 $urls = [];
 $urls[] = 'asset:/testcase/app/secret/secret.txt';
