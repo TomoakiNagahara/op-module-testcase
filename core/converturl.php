@@ -17,7 +17,7 @@ namespace OP;
 $results = [];
 
 //	Base URL
-$base_url = ConvertURL('testcase:/core/converturl');
+$base_url = ConvertURL('testcase:/core/').'converturl';
 
 //	Check convert result.
 $results['standard']['REQUEST_URL'] = $_SERVER['REQUEST_URI'];
@@ -28,8 +28,10 @@ $results['standard']['result'] = (strpos($_SERVER['REQUEST_URL'], $base_url) ===
 $results['slash of tail'][] = ConvertURL('testcase:/');
 $results['slash of tail'][] = ConvertURL('testcase:/core');  // <-- Is directory.
 $results['slash of tail'][] = ConvertURL('testcase:/core/'); // <-- Is directory.
-$results['slash of tail'][] = ConvertURL('testcase:/core/converturl'); // <-- Not directory.
+/*
+$results['slash of tail'][] = ConvertURL('testcase:/core/converturl' ); // <-- Not directory.
 $results['slash of tail'][] = ConvertURL('testcase:/core/converturl/');
+*/
 
 //	...
 $result = true;
