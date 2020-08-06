@@ -37,6 +37,16 @@ echo '<hr/>'.PHP_EOL;
 //	...
 Html(null, 'hr');
 Html( 'memory usage: ' . memory_get_usage() / 1000 .'KB (max: '. memory_get_peak_usage() / 1000 .'KB)');
+
+//	...
+$args = $app->Args();
+
+//	...
+if( count($args) ){
+	return;
+}
+
+//	...
 Debug::Set('PHP' , PHP_VERSION);
 Debug::Set('SAPI', php_sapi_name());
 /*
