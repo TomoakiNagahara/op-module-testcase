@@ -23,7 +23,7 @@ if(!$name = array_shift($args) ){
 }
 
 //	...
-$path = "unit:/{$name}/testcase/action.php";
+$path = "asset:/unit/{$name}/testcase/action.php";
 
 //	...
 if( file_exists( ConvertPath($path, false) ) ){
