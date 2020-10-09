@@ -11,11 +11,13 @@
 /** namespace
  *
  */
-namespace OP;
+namespace OP\UNIT;
 
 /** use
  *
  */
+use OP\IF_UNIT;
+use OP\OP_UNIT;
 
 /** Testcase
  *
@@ -31,4 +33,31 @@ class Testcase implements IF_UNIT
 	 *
 	 */
 	use OP_UNIT;
+
+	/** Use Count method.
+	 *
+	 * @created    2020-10-09
+	 * @var        integer
+	 */
+	private $_count;
+
+	/** constructor
+	 *
+	 * @created    2020-10-09
+	 */
+	function __construct()
+	{
+		$this->_count = 0;
+	}
+
+	/** Count is used to check if same instance.
+	 *
+	 * @created    2020-10-09
+	 * @return     integer
+	 */
+	function Count():int
+	{
+		$this->_count++;
+		return $this->_count;
+	}
 }
