@@ -13,4 +13,25 @@
  */
 namespace OP;
 
-D();
+/** use
+ *
+ */
+use OP\UNIT\Testcase;
+
+//	...
+if(!require( ConvertPath('testcase:/Testcase.class.php') ) ){
+	Notice("Include class is failed.");
+}
+
+Html('Singleton','h1');
+Html('Check return same instance.');
+
+//	...
+$testcase1 = Testcase::Singleton();
+D( $testcase1->Count() );
+
+//	...
+$testcase2 = Testcase::Singleton();
+D( $testcase2->Count() );
+
+Html('','hr');
