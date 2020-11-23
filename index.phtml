@@ -13,22 +13,22 @@
  */
 namespace OP;
 
-/* @var $app \OP\UNIT\App */
-
 //	Check if http or shell.
 if(!Env::isHttp() ){
-	$app->Template('controller.php');
+	Template('controller.php');
 	return;
 }
 
-//	Load menu.css
-$app->WebPack('menu.css');
+/* @var $webpack UNIT\WebPack */
+$webpack = Unit('WebPack');
+$webpack->Css(__DIR__.'/menu');
 
 ?>
 <section id="testcase">
-<?php $app->Template('index-right-menu.phtml') ?>
-<?php $app->Template('index-breadcrumb.phtml') ?>
-<?php $app->Template('controller.php')         ?>
+<?php Template('index-right-menu.phtml') ?>
+<?php Template('index-breadcrumb.phtml') ?>
+<?php Template('controller.php')         ?>
+<?php Template('readme.php')             ?>
 </section>
 <?php
 //	...
@@ -39,7 +39,7 @@ Html(null, 'hr');
 Html( 'memory usage: ' . memory_get_usage() / 1000 .'KB (max: '. memory_get_peak_usage() / 1000 .'KB)');
 
 //	...
-$args = $app->Args();
+$args = Args();
 
 //	...
 if( count($args) ){

@@ -14,7 +14,7 @@
 namespace OP;
 
 /* @var $app \OP\UNIT\App */
-$root = $app->URL('testcase:/');
+$root = RootPath('testcase');
 
 ?>
 
@@ -24,7 +24,7 @@ $root = $app->URL('testcase:/');
 	<span class="arg"><a href="<?= $root ?>">testcase</a></span>
 	<?php
 	$args = [];
-	foreach( Unit('Router')->Args() as $arg ){
+	foreach( Args() as $arg ){
 		$args[] = explode('.', $arg)[0];
 		printf('<span class="arg"><a href="%s%s">%s</a></span>', $root, join('/',$args), $arg);
 	}

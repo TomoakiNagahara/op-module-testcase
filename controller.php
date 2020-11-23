@@ -13,8 +13,8 @@
  */
 namespace OP;
 
-/* @var $app \OP\UNIT\App */
-$args = $app->Args();
+//	...
+$args = Args();
 
 //	...
 $arg  = null;
@@ -31,7 +31,7 @@ while( $arg = array_shift($args) ){
 
 	//	menu
 	if( file_exists($menu = $path . '/menu.phtml') ){
-		$app->Template($menu);
+		Template($menu);
 	};
 
 	//	...
@@ -44,5 +44,5 @@ while( $arg = array_shift($args) ){
 	};
 
 	//	...
-	$app->Template($file, ['args'=>$args]);
+	Template( CompressPath($file), ['args'=>$args]);
 };

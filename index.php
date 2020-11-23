@@ -20,6 +20,9 @@ if(!Env::isAdmin() ){
 };
 
 //	...
+Load('Args');
+
+//	...
 require_once('function.php');
 
 /* @var $app \OP\UNIT\App */
@@ -32,4 +35,4 @@ $root_path = dirname( Unit('Router')->EndPoint() );
 RootPath('testcase', $root_path);
 
 //	...
-$app->Template('index.phtml');
+Template('index.phtml');
