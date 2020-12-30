@@ -14,7 +14,7 @@
 namespace OP;
 
 /* @var $app UNIT\App */
-$root = RootPath('testcase');
+$root = ConvertURL('testcase:/');
 
 //	...
 $lists = [];
@@ -60,7 +60,6 @@ foreach( scandir( ConvertPath('asset:/unit/') ) as $file ){
 	$lists['unit'][$file] = ucfirst($file);
 }
 
-/* @var $app \OP\UNIT\App */
 ?>
 <!-- Right float menu -->
 <div class="testcase-right-float-menu">
