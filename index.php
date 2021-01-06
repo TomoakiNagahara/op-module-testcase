@@ -21,6 +21,7 @@ if(!Env::isAdmin() ){
 
 //	...
 Load('Args');
+Load('Markdown');
 
 //	...
 foreach( glob('function.*.php') as $file ){
