@@ -42,7 +42,7 @@ foreach( $results['slash of tail'] as $index => $value ){
 	$slash = $value[strlen($value)-1] === '/';
 	if( $evalu !== $slash ){
 		$result =  false;
-		Notice::set("Slash of tail is unmatch. ($index, $value)");
+		Notice("Slash of tail is unmatch. ($index, $value)");
 	}
 }
 $results['slash of tail']['result'] = $result;
