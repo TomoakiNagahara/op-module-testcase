@@ -1,0 +1,16 @@
+<?php
+
+//	...
+namespace OP;
+
+//	...
+Load('Session');
+
+//	...
+$count = (int)Session('count');
+
+//	...
+Session('count', $count + 1);
+
+//	...
+D($count);
