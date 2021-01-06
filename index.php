@@ -23,7 +23,9 @@ if(!Env::isAdmin() ){
 Load('Args');
 
 //	...
-require_once('function.php');
+foreach( glob('function.*.php') as $file ){
+	require_once($file);
+}
 
 /* @var $app \OP\UNIT\App */
 $app->Title('testcase');

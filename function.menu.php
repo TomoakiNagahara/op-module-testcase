@@ -1,7 +1,7 @@
 <?php
-/** op-module-testcase:/function.php
+/** op-module-testcase:/function.menu.php
  *
- * @created   2020-05-21
+ * @created   2021-01-06
  * @version   1.0
  * @package   op-module-testcase
  * @author    Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
@@ -16,31 +16,7 @@ namespace OP\TESTCASE;
 /** use
  *
  */
-use OP\Notice;
 use OP\Env;
-
-/** Auto
- *
- * @created   2020-05-21
- */
-function Auto($args){
-	//	...
-	if(!$file = array_shift($args) ){
-		return;
-	}
-
-	//	...
-	$file.= '.php';
-
-	//	...
-	if(!file_exists($file) ){
-		Notice::Set("This file has not been exists. ($file)");
-		return;
-	}
-
-	//	...
-	require($file);
-}
 
 /** Menu
  *
