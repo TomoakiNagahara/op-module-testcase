@@ -18,6 +18,7 @@ namespace OP\MODULE;
  */
 use OP\IF_UNIT;
 use OP\OP_UNIT;
+use OP\OP_CI;
 
 /** Testcase
  *
@@ -33,6 +34,7 @@ class Testcase implements IF_UNIT
 	 *
 	 */
 	use OP_UNIT;
+	use OP_CI;
 
 	/** Use Count method.
 	 *
